@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Hot News | Kafka Company</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f5f0eb;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      color: #1a1a1a;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 0 2rem 0;
+    }
+
+    .top-banner {
+      background: #8b1a1a;
+      border-bottom: 2px solid #5c0e0e;
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 0.7rem;
+      color: #f5e6d9;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+    }
+
+    .main-header {
+      padding: 1.5rem 1.5rem 0.8rem 1.5rem;
+      border-bottom: 2px solid #8b1a1a;
+      background: #ffffff;
+    }
+
+    .logo-area {
+      text-align: left;
+    }
+
+    .logo-area h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #8b1a1a;
+      text-shadow: 0 0 20px rgba(139, 26, 26, 0.15);
+    }
+
+    .logo-area .sub {
+      color: #8b1a1a;
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-top: 0.2rem;
+      opacity: 0.8;
+    }
+
+    .nav-row {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1.8rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #8b1a1a;
+      border-top: 1px solid #e8d5c8;
+      padding-top: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      background: #ffffff;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .featured-label {
+      display: none;
+    }
+
+    .headline {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #1a1a1a;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .headline {
+        font-size: 2.9rem;
+      }
+    }
+
+    .meta-info {
+      display: flex;
+      gap: 1.2rem;
+      color: #6b3a2a;
+      font-size: 0.8rem;
+      border-bottom: 1px solid #e8d5c8;
+      padding-bottom: 1rem;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      font-weight: 500;
+    }
+
+    .main-img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      border: 1px solid #d4b8a8;
+      background: #f0e8e0;
+    }
+
+    .article-content p {
+      margin-bottom: 1.4rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #1a1a1a;
+      text-align: justify;
+    }
+
+    @media (min-width: 768px) {
+      .article-content p {
+        font-size: 1.07rem;
+      }
+    }
+
+    .article-content .img-inline {
+      width: 100%;
+      max-height: 340px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 1.8rem 0 1.8rem 0;
+      border: 1px solid #d4b8a8;
+      background: #f0e8e0;
+    }
+
+    hr.divider {
+      margin: 2rem 0 1.8rem 0;
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, #d4b8a8, #8b1a1a, #d4b8a8);
+    }
+
+    .translation-toggle {
+      display: none;
+    }
+
+    .btn-translate {
+      display: none;
+    }
+
+    .comments-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+
+    .comments-head h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .comment-badge {
+      background: #8b1a1a;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #f5e6d9;
+    }
+
+    .comment-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid #e8d5c8;
+    }
+
+    .comment-user {
+      font-weight: 700;
+      color: #8b1a1a;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .comment-text {
+      color: #1a1a1a;
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .comment-reply {
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+      border-left: 3px solid #8b1a1a;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+    }
+
+    .comment-reply .comment-user {
+      font-size: 0.85rem;
+      color: #6b3a2a;
+    }
+
+    .comment-reply .comment-text {
+      font-size: 0.9rem;
+    }
+
+    .comment-footer-note {
+      margin-top: 1.5rem;
+      text-align: right;
+      font-weight: 600;
+      color: #8b1a1a;
+      border-top: 1px solid #e8d5c8;
+      padding-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background: #ffffff;
+      border-top: 2px solid #8b1a1a;
+      padding: 1.8rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #6b3a2a;
+      margin-top: 2rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 1.25rem 1rem;
+      }
+      .main-header {
+        padding: 1rem 1rem 0.5rem 1rem;
+      }
+      .top-banner {
+        padding: 0.5rem 1rem;
+        font-size: 0.65rem;
+      }
+      .logo-area h1 {
+        font-size: 1.9rem;
+      }
+      .nav-row {
+        gap: 1rem;
+        font-size: 0.75rem;
+      }
+      .comment-text {
+        font-size: 0.9rem;
+      }
+      .comment-reply {
+        padding-left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-banner">
+  <span>LONDON</span>
+  <span>EXCLUSIVE • BUSINESS & FINANCE</span>
+</div>
+
+<div class="main-header">
+  <div class="logo-area">
+    <h1>HOT NEWS</h1>
+    <div class="sub">Breaking • Analysis • Global</div>
+  </div>
+  <div class="nav-row">
+    <span>HOME</span>
+    <span>BUSINESS</span>
+    <span>CORPORATE</span>
+    <span>INVESTIGATIONS</span>
+    <span>INTERNATIONAL</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div id="contentWrapper">
+    <img class="main-img" src="Kafkanews8.png" alt="Kafka Company" onerror="this.style.display='none'">
+
+    <h1 class="headline" id="mainHeadline">Kafka Company stands at a Leadership Crossroads, is Gathur emerging as the Leading Candidate?</h1>
+    <div class="meta-info">
+      <span id="byline">By Hot News Desk</span>
+      <span>London</span>
+      <span>Updated 2 hours ago</span>
+    </div>
+
+    <div class="article-content" id="articleContent">
+
+      <p id="p1"><strong>LONDON</strong> — Kafka Company has officially entered a critical grace period ahead of an impending restructure in major shareholding, a move set to trigger a high-stakes shift in the company's upper echelons.</p>
+
+      <p id="p2">Kafka Company is a multi-sector conglomerate with a powerful presence across finance, tourism, and education. The enterprise has dominated the business under Edward Kafka, Gilbert Kafka, and Mautier Doe Kafka—collectively recognized as the Kafka Family.</p>
+
+      <img class="img-inline" src="Kafkanews9.png" alt="Edward Kafka hotel launch" onerror="this.style.display='none'">
+
+      <p id="p3">Edward, the founder of Kafka Company, recently marked a major expansion with the grand opening of a new five-star hotel in Paris. During the high-profile launch, his statements caught the public's attention as he expressed immense pride and absolute confidence in the capabilities of his sons, Theodore Kafka and Gathur D. Kafka.</p>
+
+      <p id="p4">The public has effectively narrowed this corporate succession down to a battle between the two top-performing executives. Analysts are already drawing sharp contrasts between the commercial strategies and public influence of them.</p>
+
+      <p id="p5">Theodore Kafka has built a powerful corporate portfolio at the intersection of healthcare and commerce. By establishing multiple hospital networks and heavily funding medical R&D, his strategic positioning in global health insurance programs has made him an indispensable asset to the industry.</p>
+
+      <p id="p6">Gathur D. Kafka, however, is widely perceived as the frontrunner when it comes to raw commercial momentum. Commercial House & SEC report that Gathur's personal net income from his companies is already closing in on the valuation of Kafka Company itself, a staggering financial leverage that gives him a massive advantage.</p>
+
+      <img class="img-inline" src="Kafkanews10.png" alt="Gathur D. Kafka" onerror="this.style.display='none'">
+
+      <p id="p7">With a heavy background in tech innovation and business, Gathur has consistently dictated market trends rather than just following them, successfully launching wave after wave of disruptive consumer trends across major digital platforms. Furthermore, his multilingual fluency serves as a sharp tool for global corporate diplomacy, allowing him to seamlessly secure international market share and public backing with remarkable ease.</p>
+
+      <p id="p8">Both Theodore and Gathur remain locked in a fierce battle to secure their public images. However, Edward's sons face further pressure from the wider Kafka family. The public remains highly aware of the children of Gilbert Kafka and Mautier D. Kafka, who are expected to enter this corporate shareholding battle. The upcoming boardroom showdown will ultimately decide who takes the wheel of the Kafka Company.</p>
+
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="comments-head">
+    <h2>Comments</h2>
+    <div class="comment-badge">Discussion</div>
+  </div>
+
+  <div class="comment-list">
+
+    <!-- Comment 1 with replies -->
+    <div class="comment-item">
+      <div class="comment-user">@Primber:</div>
+      <div class="comment-text">Whatever. Both of Theodore and Gathur are nepobaby because they're NOTHING WITHOUT EDWARD.</div>
+      <div class="comment-reply">
+        <div class="comment-user">@Relios:</div>
+        <div class="comment-text">What's your problem??</div>
+      </div>
+      <div class="comment-reply">
+        <div class="comment-user">@JoshuaKs:</div>
+        <div class="comment-text">Well, you're right. But Gathur is not as bad as Theo. Gathur won a tech competition organized by Sarah and others under the umbrella of Vaultx Inc. he subsequently joined the company and is now a co-founder. He has wielded significant influence there, achieving success with N-Link AI and the Shadowmind System. None of this has any connection to Edward.</div>
+      </div>
+      <div class="comment-reply">
+        <div class="comment-user">@HealthcareFirst:</div>
+        <div class="comment-text">At least Theo stands for healthcare and better than Edward</div>
+      </div>
+    </div>
+
+    <!-- Comment 2 -->
+    <div class="comment-item">
+      <div class="comment-user">@Laurenserbia:</div>
+      <div class="comment-text">When it comes to image, Theodore clearly has the edge, but remember.. this is business. In that arena, Gathur is vastly superior, just look at how he managed Megathro. The hospital was on the verge of losing its accreditation and being converted into a tax office, yet once he stepped in to handle it personally, it returned to a state of success. It is true that he is Edward's son and a product of nepotism, but at the very least, Gathur truly makes the most of his privilege.</div>
+    </div>
+
+    <!-- Comment 3 with replies -->
+    <div class="comment-item">
+      <div class="comment-user">@Karnatyus:</div>
+      <div class="comment-text">Eh tapi jujur ga setuju Gathur naik jadi pemilik KC, soalnya dia handle Vaultx di Nyc kan? Kebayang KC itu kental banget sama Inggris dan sensitif dalam urusan politik, dia bakalan bentrok ga sih sama Vaultx kalau dia stay di Inggris terus? Bakalan resign dia</div>
+      <div class="comment-reply">
+        <div class="comment-user">@Salmahsss:</div>
+        <div class="comment-text">Nah sepemikiran, gue rasa dia ga bakal ambil ini deh atau justru dia ninggalin Vaultx</div>
+      </div>
+      <div class="comment-reply">
+        <div class="comment-user">@Adityaxx:</div>
+        <div class="comment-text">Tapi kalau dia beneran merajai Kafka Company, udah bisa dibayangin seberjaya apa nanti itu.. Edward juga keliatannya lebih condong ke dia ga sih?</div>
+      </div>
+    </div>
+
+    <!-- Comment 4 with reply -->
+    <div class="comment-item">
+      <div class="comment-user">@Anerait:</div>
+      <div class="comment-text">If Gathur chooses Kafka Company and lets go of Vaultx, it would be the stupidest decision he could make. Kafka Company is currently in a crisis caused by Edward, even if he manages to handle it later, he would become entangled in politics, which would inevitably make things difficult for him.</div>
+      <div class="comment-reply">
+        <div class="comment-user">@xxxxyueas:</div>
+        <div class="comment-text">Trust me, that Ed-coward gonna force him to handle the rest of it.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="comment-footer-note">
+    99,999+ discussions
+  </div>
+</div>
+
+<footer>
+  HOT NEWS — 2026 Roleplay Purpose
+</footer>
+
+</body>
+</html>
