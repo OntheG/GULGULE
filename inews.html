@@ -129,32 +129,70 @@
       }
     }
 
+    /* FULL SLIDER — HORIZONTAL SCROLL, FULL IMAGE VISIBLE */
     .slider-container {
       display: flex;
-      gap: 0.8rem;
+      gap: 1rem;
       overflow-x: auto;
-      padding: 0.5rem 0 1.5rem 0;
-      margin-bottom: 1rem;
+      padding: 0.5rem 0 1.8rem 0;
+      margin-bottom: 1.2rem;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #8b1a1a #e8d5c8;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .slider-container::-webkit-scrollbar-track {
+      background: #e8d5c8;
+      border-radius: 10px;
+    }
+
+    .slider-container::-webkit-scrollbar-thumb {
+      background: #8b1a1a;
+      border-radius: 10px;
     }
 
     .slider-container img {
       flex: 0 0 auto;
       width: 100%;
-      max-width: 220px;
-      height: 150px;
+      max-width: 280px;
+      height: 200px;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid #d4b8a8;
       scroll-snap-align: start;
       background: #f0e8e0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .slider-container img:hover {
+      transform: scale(1.02);
     }
 
     @media (min-width: 600px) {
       .slider-container img {
-        max-width: 280px;
-        height: 180px;
+        max-width: 320px;
+        height: 220px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .slider-container img {
+        max-width: 380px;
+        height: 250px;
+      }
+    }
+
+    /* small screens */
+    @media (max-width: 480px) {
+      .slider-container img {
+        max-width: 200px;
+        height: 150px;
       }
     }
 
@@ -278,10 +316,6 @@
       .comment-reply {
         padding-left: 1rem;
       }
-      .slider-container img {
-        max-width: 160px;
-        height: 120px;
-      }
     }
   </style>
 </head>
@@ -323,7 +357,7 @@
 
     <p>According to sources familiar with the project, the collaboration is expected to introduce a new eyewear collection, combining PRADA's luxury design language with Vaultx's technology-driven innovation. While neither company has disclosed further details about the product, anticipation has continued to grow following the campaign's release.</p>
 
-    <!-- Slider Container -->
+    <!-- FULL SLIDER — GAMBAR FULL, TIDAK TERPOTONG -->
     <div class="slider-container">
       <img src="Pradakafka1.png" alt="PRADA x VAULTX 1" onerror="this.style.display='none'">
       <img src="Pradakafka2.png" alt="PRADA x VAULTX 2" onerror="this.style.display='none'">
@@ -364,4 +398,4 @@
 </footer>
 
 </body>
-</html>
+      </html>
