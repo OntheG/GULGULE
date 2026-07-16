@@ -129,70 +129,112 @@
       }
     }
 
-    /* SLIDER — PORTRAIT POSTERS, TIDAK TER-CROP, FULL TAMPIL */
+    /* SLIDER 1 PER 1 — NAVIGASI PANAH KIRI/KANAN */
+    .slider-wrapper {
+      position: relative;
+      margin: 0.5rem 0 1.8rem 0;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #f5f0eb;
+      border: 1px solid #d4b8a8;
+    }
+
     .slider-container {
       display: flex;
-      gap: 1.2rem;
-      overflow-x: auto;
-      padding: 0.5rem 0 2rem 0;
-      margin-bottom: 1.2rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: #8b1a1a #e8d5c8;
-      align-items: flex-start;
-    }
-
-    .slider-container::-webkit-scrollbar {
-      height: 6px;
-    }
-
-    .slider-container::-webkit-scrollbar-track {
-      background: #e8d5c8;
-      border-radius: 10px;
-    }
-
-    .slider-container::-webkit-scrollbar-thumb {
-      background: #8b1a1a;
-      border-radius: 10px;
+      transition: transform 0.4s ease-in-out;
+      will-change: transform;
     }
 
     .slider-container img {
-      flex: 0 0 auto;
-      width: auto;
-      height: 320px;
-      max-width: 240px;
+      flex: 0 0 100%;
+      width: 100%;
+      height: auto;
+      max-height: 500px;
       object-fit: contain;
-      border-radius: 14px;
-      border: 1px solid #d4b8a8;
-      scroll-snap-align: start;
       background: #f5f0eb;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      transition: transform 0.2s ease;
+      display: block;
     }
 
-    .slider-container img:hover {
-      transform: scale(1.03);
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(139, 26, 26, 0.85);
+      color: #fff;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      font-weight: 300;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      line-height: 1;
+      user-select: none;
     }
 
-    @media (min-width: 600px) {
-      .slider-container img {
-        height: 400px;
-        max-width: 300px;
+    .slider-btn:hover {
+      background: #5c0e0e;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .slider-btn:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .slider-btn.prev {
+      left: 12px;
+    }
+
+    .slider-btn.next {
+      right: 12px;
+    }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.7rem;
+      padding: 0.8rem 0 0.2rem 0;
+    }
+
+    .slider-dots span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #d4b8a8;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .slider-dots span.active {
+      background: #8b1a1a;
+      transform: scale(1.2);
+    }
+
+    .slider-dots span:hover {
+      background: #8b1a1a;
+    }
+
+    @media (max-width: 640px) {
+      .slider-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
       }
-    }
-
-    @media (min-width: 900px) {
-      .slider-container img {
-        height: 480px;
-        max-width: 360px;
+      .slider-btn.prev {
+        left: 6px;
       }
-    }
-
-    @media (max-width: 480px) {
+      .slider-btn.next {
+        right: 6px;
+      }
       .slider-container img {
-        height: 250px;
-        max-width: 180px;
+        max-height: 380px;
       }
     }
 
@@ -237,7 +279,6 @@
     }
 
     .comment-list {
-      /* comments hidden per instruction, but container tetap ada */
       min-height: 2rem;
     }
 
@@ -321,12 +362,24 @@
 
     <p>According to sources familiar with the project, the collaboration is expected to introduce a new eyewear collection, combining PRADA's luxury design language with Vaultx's technology-driven innovation. While neither company has disclosed further details about the product, anticipation has continued to grow following the campaign's release.</p>
 
-    <!-- SLIDER POSTER PORTRAIT — TIDAK TER-CROP, FULL TAMPIL -->
-    <div class="slider-container">
-      <img src="Pradakafka1.png" alt="PRADA x VAULTX 1" onerror="this.style.display='none'">
-      <img src="Pradakafka2.png" alt="PRADA x VAULTX 2" onerror="this.style.display='none'">
-      <img src="Pradakafka3.png" alt="PRADA x VAULTX 3" onerror="this.style.display='none'">
-      <img src="Pradakafka4.png" alt="PRADA x VAULTX 4" onerror="this.style.display='none'">
+    <!-- SLIDER 1 PER 1 DENGAN TOMBOL PANAH -->
+    <div class="slider-wrapper">
+      <div class="slider-container" id="sliderContainer">
+        <img src="Pradakafka1.png" alt="PRADA x VAULTX 1" onerror="this.style.display='none'">
+        <img src="Pradakafka2.png" alt="PRADA x VAULTX 2" onerror="this.style.display='none'">
+        <img src="Pradakafka3.png" alt="PRADA x VAULTX 3" onerror="this.style.display='none'">
+        <img src="Pradakafka4.png" alt="PRADA x VAULTX 4" onerror="this.style.display='none'">
+      </div>
+      <button class="slider-btn prev" id="prevBtn" aria-label="Previous">‹</button>
+      <button class="slider-btn next" id="nextBtn" aria-label="Next">›</button>
+    </div>
+
+    <!-- DOTS / INDICATOR -->
+    <div class="slider-dots" id="sliderDots">
+      <span class="active" data-index="0"></span>
+      <span data-index="1"></span>
+      <span data-index="2"></span>
+      <span data-index="3"></span>
     </div>
 
     <p>Kafka's appearance has drawn significant attention across social media, with many describing the decision as both exclusive and unexpected. Despite being one of the most recognisable figures in the technology industry, Kafka has never accepted modelling offers from any fashion label—including brands under his own corporate portfolio—making this campaign his first appearance in a fashion-related promotional project.</p>
@@ -358,8 +411,91 @@
 </div>
 
 <footer>
-  iNews — Roleplay Purpose Only
+  iNews — New York City • Friday 17 July 2026
 </footer>
 
+<script>
+  (function() {
+    const container = document.getElementById('sliderContainer');
+    const slides = container.querySelectorAll('img');
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+    let isTransitioning = false;
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dots = document.querySelectorAll('#sliderDots span');
+
+    function goToSlide(index) {
+      if (isTransitioning) return;
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      if (index === currentIndex) return;
+
+      isTransitioning = true;
+      currentIndex = index;
+      container.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+
+      // update dots
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 400);
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    // Dot clicks
+    dots.forEach((dot) => {
+      dot.addEventListener('click', function() {
+        const index = parseInt(this.getAttribute('data-index'), 10);
+        if (index !== currentIndex) {
+          goToSlide(index);
+        }
+      });
+    });
+
+    // Keyboard support
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const wrapper = document.querySelector('.slider-wrapper');
+    wrapper.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    // Set initial position
+    container.style.transform = 'translateX(0%)';
+  })();
+</script>
+
 </body>
-        </html>
+  </html>
