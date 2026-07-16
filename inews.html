@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PRADA x VAULTX | iNews</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f5f0eb;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      color: #1a1a1a;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 0 2rem 0;
+    }
+
+    .top-banner {
+      background: #8b1a1a;
+      border-bottom: 2px solid #5c0e0e;
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 0.7rem;
+      color: #f5e6d9;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+    }
+
+    .main-header {
+      padding: 1.5rem 1.5rem 0.8rem 1.5rem;
+      border-bottom: 2px solid #8b1a1a;
+      background: #ffffff;
+    }
+
+    .logo-area {
+      text-align: left;
+    }
+
+    .logo-area h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #8b1a1a;
+      text-shadow: 0 0 20px rgba(139, 26, 26, 0.15);
+    }
+
+    .logo-area .sub {
+      color: #8b1a1a;
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-top: 0.2rem;
+      opacity: 0.8;
+    }
+
+    .nav-row {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1.8rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #8b1a1a;
+      border-top: 1px solid #e8d5c8;
+      padding-top: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      background: #ffffff;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .headline {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #1a1a1a;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .headline {
+        font-size: 2.9rem;
+      }
+    }
+
+    .meta-info {
+      display: flex;
+      gap: 1.2rem;
+      color: #6b3a2a;
+      font-size: 0.8rem;
+      border-bottom: 1px solid #e8d5c8;
+      padding-bottom: 1rem;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      font-weight: 500;
+    }
+
+    .main-img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      border: 1px solid #d4b8a8;
+      background: #f0e8e0;
+    }
+
+    .article-content p {
+      margin-bottom: 1.4rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #1a1a1a;
+      text-align: justify;
+    }
+
+    @media (min-width: 768px) {
+      .article-content p {
+        font-size: 1.07rem;
+      }
+    }
+
+    .slider-container {
+      display: flex;
+      gap: 0.8rem;
+      overflow-x: auto;
+      padding: 0.5rem 0 1.5rem 0;
+      margin-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .slider-container img {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 220px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #d4b8a8;
+      scroll-snap-align: start;
+      background: #f0e8e0;
+    }
+
+    @media (min-width: 600px) {
+      .slider-container img {
+        max-width: 280px;
+        height: 180px;
+      }
+    }
+
+    .article-content .img-inline {
+      width: 100%;
+      max-height: 340px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 1.8rem 0 1.8rem 0;
+      border: 1px solid #d4b8a8;
+      background: #f0e8e0;
+    }
+
+    hr.divider {
+      margin: 2rem 0 1.8rem 0;
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, #d4b8a8, #8b1a1a, #d4b8a8);
+    }
+
+    .comments-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+
+    .comments-head h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .comment-badge {
+      background: #8b1a1a;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #f5e6d9;
+    }
+
+    .comment-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid #e8d5c8;
+    }
+
+    .comment-user {
+      font-weight: 700;
+      color: #8b1a1a;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .comment-text {
+      color: #1a1a1a;
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .comment-reply {
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+      border-left: 3px solid #8b1a1a;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+    }
+
+    .comment-reply .comment-user {
+      font-size: 0.85rem;
+      color: #6b3a2a;
+    }
+
+    .comment-reply .comment-text {
+      font-size: 0.9rem;
+    }
+
+    .comment-footer-note {
+      margin-top: 1.5rem;
+      text-align: right;
+      font-weight: 600;
+      color: #8b1a1a;
+      border-top: 1px solid #e8d5c8;
+      padding-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background: #ffffff;
+      border-top: 2px solid #8b1a1a;
+      padding: 1.8rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #6b3a2a;
+      margin-top: 2rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 1.25rem 1rem;
+      }
+      .main-header {
+        padding: 1rem 1rem 0.5rem 1rem;
+      }
+      .top-banner {
+        padding: 0.5rem 1rem;
+        font-size: 0.65rem;
+      }
+      .logo-area h1 {
+        font-size: 1.9rem;
+      }
+      .nav-row {
+        gap: 1rem;
+        font-size: 0.75rem;
+      }
+      .comment-text {
+        font-size: 0.9rem;
+      }
+      .comment-reply {
+        padding-left: 1rem;
+      }
+      .slider-container img {
+        max-width: 160px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-banner">
+  <span>NEW YORK CITY</span>
+  <span>FRIDAY 17 JULY 2026 • EXCLUSIVE</span>
+</div>
+
+<div class="main-header">
+  <div class="logo-area">
+    <h1>iNews</h1>
+    <div class="sub">Global • Business • Culture</div>
+  </div>
+  <div class="nav-row">
+    <span>HOME</span>
+    <span>BUSINESS</span>
+    <span>LUXURY</span>
+    <span>TECHNOLOGY</span>
+    <span>INTERNATIONAL</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <img class="main-img" src="Kafkanews12.png" alt="PRADA x VAULTX Campaign" onerror="this.style.display='none'">
+
+  <h1 class="headline" id="mainHeadline">PRADA x VAULTX : Release Campaign Poster Featuring Gathur D. Kafka</h1>
+  <div class="meta-info">
+    <span>By iNews Desk</span>
+    <span>New York City</span>
+    <span>Friday 17 July 2026</span>
+  </div>
+
+  <div class="article-content">
+
+    <p><strong>NEW YORK</strong> — PRADA has officially unveiled the first campaign poster for its latest collaboration with technology company Vaultx, featuring entrepreneur Gathur D. Kafka. Although Kafka has not been appointed as an official brand ambassador or campaign model, his appearance is widely seen as the first public signal of the partnership between the Italian luxury fashion house and the tech company.</p>
+
+    <p>According to sources familiar with the project, the collaboration is expected to introduce a new eyewear collection, combining PRADA's luxury design language with Vaultx's technology-driven innovation. While neither company has disclosed further details about the product, anticipation has continued to grow following the campaign's release.</p>
+
+    <!-- Slider Container -->
+    <div class="slider-container">
+      <img src="Pradakafka1.png" alt="PRADA x VAULTX 1" onerror="this.style.display='none'">
+      <img src="Pradakafka2.png" alt="PRADA x VAULTX 2" onerror="this.style.display='none'">
+      <img src="Pradakafka3.png" alt="PRADA x VAULTX 3" onerror="this.style.display='none'">
+      <img src="Pradakafka4.png" alt="PRADA x VAULTX 4" onerror="this.style.display='none'">
+    </div>
+
+    <p>Kafka's appearance has drawn significant attention across social media, with many describing the decision as both exclusive and unexpected. Despite being one of the most recognisable figures in the technology industry, Kafka has never accepted modelling offers from any fashion label—including brands under his own corporate portfolio—making this campaign his first appearance in a fashion-related promotional project.</p>
+
+    <p>Speaking about the collaboration, Vaultx Founder Sarah clarified that Kafka's involvement is limited exclusively to the PRADA x Vaultx campaign.</p>
+
+    <p>"Kafka appears only in this campaign. His participation was specifically arranged to introduce and promote our upcoming product," Sarah said.</p>
+
+    <p>She also confirmed that Gathur D. Kafka is expected to attend tomorrow's Mode Gala alongside PRADA, further fuelling speculation that additional announcements related to the collaboration could be made during the event.</p>
+
+    <p>While PRADA and Vaultx have yet to reveal the official launch date of the new eyewear collection, the campaign has already generated considerable attention, with many viewing it as one of the most anticipated luxury-fashion and technology collaborations of the year.</p>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="comments-head">
+    <h2>Comments</h2>
+    <div class="comment-badge">125.213</div>
+  </div>
+
+  <div class="comment-list">
+    <!-- Comments are intentionally omitted per instruction. Only badge shows 125.213 -->
+  </div>
+
+  <div class="comment-footer-note">
+    125.213 discussions
+  </div>
+</div>
+
+<footer>
+  iNews — New York City • Friday 17 July 2026
+</footer>
+
+</body>
+</html>
